@@ -1,4 +1,7 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
+/usr/sbin/iw dev wlan0 set txpower fixed 2700
+/usr/sbin/iw dev wlan1 set txpower fixed 2600
+
 exit 0
