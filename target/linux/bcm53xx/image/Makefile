@@ -118,6 +118,9 @@ BRCMFMAC_4366B1 := $(IEEE8021X) kmod-brcmfmac brcmfmac-firmware-4366b1-pcie
 BRCMFMAC_4366C0 := $(IEEE8021X) kmod-brcmfmac brcmfmac-firmware-4366c0-pcie
 USB2_PACKAGES := kmod-usb-ohci kmod-usb2 kmod-phy-bcm-ns-usb2
 USB2_PACKAGES += kmod-usb-ledtrig-usbport
+AUTO_USB := automount kmod-usb-core kmod-usb-storage kmod-usb-storage-extras kmod-usb-storage-uas kmod-fs-ext4 kmod-fs-msdos kmod-fs-nfs kmod-fs-ntfs block-mount blockd cfdisk hd-idle hd-param
+K3_LUCI_APP := luci-app-aliyundrive-webdav luci-app-guest-wifi luci-app-openclash luci-app-rclone luci-app-samba luci-app-serverchan luci-app-socat luci-app-syncdial luci-app-unblockneteasemusic luci-app-upnp luci-app-k3screenctrl
+K3_OTHER_PACKAGES := $(AUTO_USB) $(K3_LUCI_APP) ipv6helper tcpdump
 USB3_PACKAGES := $(USB2_PACKAGES) kmod-usb3 kmod-phy-bcm-ns-usb3
 
 define Device/Default
@@ -421,7 +424,7 @@ TARGET_DEVICES += smartrg_sr400ac
 define Device/phicomm_k3
   DEVICE_VENDOR := PHICOMM
   DEVICE_MODEL := K3
-  DEVICE_PACKAGES := $(BRCMFMAC_4366C0) $(USB3_PACKAGES)
+  DEVICE_PACKAGES := $(IEEE8021X) kmod-brcmfmac k3wifi $(USB3_PACKAGES) k3screenctrl $(K3_OTHER_PACKAGES)
   IMAGES := trx
 endef
 TARGET_DEVICES += phicomm_k3
